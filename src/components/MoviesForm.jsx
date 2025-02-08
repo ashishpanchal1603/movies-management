@@ -2,7 +2,7 @@ import { useState, useEffect,useId } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { addMovie, updateMovie } from "../reducer/movies.reducer";
-import { Card, Form, Button, Container, Row, Col } from "react-bootstrap"; // Bootstrap Components
+import { Card, Form, Button, Container, Row, Col, OverlayTrigger, Tooltip } from "react-bootstrap"; // Bootstrap Components
 import movieGenres from "../utils/movieGenres";
 import directors from "../utils/director";
 
@@ -79,11 +79,21 @@ function MoviesForm() {
                   ))}
                 </Form.Select>
               </Form.Group>
-
               <Form.Group className="mb-3">
-                <Form.Label>Budget <span className="required">*</span></Form.Label>
-                <Form.Control type="number" value={budget} onChange={(e) => setBudget(e?.target?.value)} required placeholder="please enter budget "/>
-              </Form.Group>
+              <Form.Label>Budget <span className="required">*</span></Form.Label>
+              <OverlayTrigger
+                placement="right"
+                overlay={<Tooltip>Enter budget in Crores (₹ Cr)</Tooltip>}
+              >
+                <Form.Control 
+                  type="number" 
+                  value={budget} 
+                  onChange={(e) => setBudget(e?.target?.value)} 
+                  required 
+                  placeholder="Enter budget in Crores"
+                />
+              </OverlayTrigger>
+            </Form.Group>
 
               <Form.Group className="mb-3">
                 <Form.Label>Rating <span className="required">*</span></Form.Label>

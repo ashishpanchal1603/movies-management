@@ -20,7 +20,7 @@ function MoviesList() {
     <>
       <Home />
       <div className="container mt-5">
-        {movies?.length !== 0 && (
+        {movies?.length !== 0 ? (
           <>
             <h2 className="text-center mb-4">Movies Management</h2>
             
@@ -43,9 +43,9 @@ function MoviesList() {
                       <td>{index+1}</td>
                       <td>{movie?.title}</td>
                       <td>{movie?.genre}</td>
-                      <td>{movie?.rating}</td>
                       <td>{movie?.director}</td>
-                      <td>{movie?.budget}</td>
+                      <td>{movie?.rating}</td>
+                      <td>{movie?.budget} Cr </td>
                       <td className="d-flex">
                         <button className="btn btn-danger me-2" onClick={() => handleDelete(movie?.id)}>
                           Delete
@@ -60,7 +60,11 @@ function MoviesList() {
               </table>
             </div>
           </>
-        )}
+        ):
+        <>
+        <h2 className="text-center mb-4">No Movies Found</h2>
+        </>
+        }
       </div>
     </>
   );
